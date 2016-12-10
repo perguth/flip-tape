@@ -1,0 +1,19 @@
+[
+  "comment",
+  "deepEqual",
+  "deepLooseEqual",
+  "doesNotThrow",
+  "equal",
+  "error",
+  "fail",
+  "false",
+  "notDeepEqual",
+  "notDeepLooseEqual",
+  "notEqual",
+  "notOk",
+  "ok",
+  "pass",
+  "skip",
+  "throws",
+  "true"
+]
