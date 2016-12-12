@@ -12,6 +12,9 @@
   ],
   "author": "Per Guth <mail@perguth.de>",
   "license": "MIT",
+  "peerDependencies": {
+    "tape": "4.x"
+  },
   "devDependencies": {
     "standard": "^8.6.0",
     "tape": "^4.6.3"
