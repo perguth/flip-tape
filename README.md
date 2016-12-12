@@ -12,16 +12,13 @@ npm install flip-tape
 var tape = require('tape')
 var flip = require('flip-tape')
 
-tape = flip(tape, true)
+tape = flip(tape)
 
 tape(t => {
   t.plan(2)
 
   'Two is less than three'.ok(2 < 3)
-
-  'This function should return false'.notOk(t => {
-    return false
-  })
+  'Five equals five'.equals(5, 5)
 })
 ```
 

@@ -10,17 +10,12 @@ module.exports = (tape, executeFunctions) => (opt1, opt2, cb) => {
 }
 
 function attachMethod (name, executeFunctions, t) {
-  var tryToExecute = noop => noop
-  if (executeFunctions) tryToExecute = (t, arg) => (typeof arg === 'function') ? arg(t) : arg
-
   String.prototype[name] = function (arg0, arg1) { // eslint-disable-line
     var arity = arguments.length
     if (arity === 2) {
-      arg1 = tryToExecute(arg1, t)
       return t[name](arg0, arg1, this)
     }
     if (arity === 1) {
-      arg0 = tryToExecute(arg0, t)
       return t[name](arg0, this)
     }
     return t[name](this)
