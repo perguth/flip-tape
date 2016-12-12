@@ -13,7 +13,8 @@
   "author": "Per Guth <mail@perguth.de>",
   "license": "MIT",
   "devDependencies": {
-    "standard": "^8.6.0"
+    "standard": "^8.6.0",
+    "tape": "^4.6.3",
   },
   "repository": {
     "type": "git",
