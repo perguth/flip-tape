@@ -33,6 +33,10 @@ All of [tapes methods](https://github.com/substack/tape#methods) that print out 
 
 Returns a tape wrapper that attaches all tape-methods that print out to the command-line to the String prototype.
 
+#### `'[message]'.[tapeTestMethodName]([actual, fn], [expected])`
+
+Calls the according [tape method](https://github.com/substack/tape#methods) relaying the message string and the optional parameters.
+
 ## License
 
 MIT
