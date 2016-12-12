@@ -1,10 +1,10 @@
 {
   "name": "flip-tape",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Write `tape`-tests starting with the message string: `'Two is less than three'.ok(2 < 3)`",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "standard && tape test.js"
   },
   "keywords": [
     "tape",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "standard": "^8.6.0",
-    "tape": "^4.6.3",
+    "tape": "^4.6.3"
   },
   "repository": {
     "type": "git",
