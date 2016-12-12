@@ -26,9 +26,9 @@ All of [tapes methods](https://github.com/substack/tape#methods) that print out 
 
 ## API
 
-#### `var flippedTape = flip(tape, [executeFunctions])`
+#### `var flippedTape = flip(tape)`
 
-Returns a tape wrapper that attaches all tape methods that print out to the command-line to the String prototype. Setting `executeFunctions` to true will cause `flippedTape` to execute arguments that go into the `expected` slot if they are of type function.
+Returns a tape wrapper that attaches all tape-methods that print out to the command-line to the String prototype.
 
 ## License
 
