@@ -16,7 +16,7 @@ var flip = require('flip-tape')
 
 var test = flip(tape)
 
-test(t => {
+test('Regular tape assertion group', t => {
   t.plan(3)
   t.ok(2 < 3, 'Regular tape syntax works as expected.')
 
@@ -27,6 +27,11 @@ test(t => {
   'But there is a callback too'.test(t => {
     t.notOk(2 > 3)
   })
+})
+
+'You can also start a group of assertions that way'.test(t => {
+  t.plan(1)
+  t.pass()
 })
 ```
 
