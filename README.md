@@ -34,15 +34,19 @@ All of [tapes methods](https://github.com/substack/tape#methods) that print out 
 
 ## API
 
-#### `var flippedTape = flip(tape)`
+#### `var test = flip(tape)`
 
 Returns a tape wrapper that attaches all tape-methods that print out to the command-line to the String prototype.
+
+#### `'[message]'.test([opt], cb)`
+
+Calls `tape` like this: `tape([message], [opt], cb)`.
 
 #### `'[message]'.[tapeTestMethodName]([actual, fn], [expected])`
 
 Calls the according [tape method](https://github.com/substack/tape#methods) relaying the message string and the optional parameters.
 
-#### `'[message]'.test(cb)`
+#### `'[message]'.t(cb)`
 
 `cb(t)` gets called with the [test object t](https://github.com/substack/tape#tplann).
 
