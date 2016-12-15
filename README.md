@@ -8,6 +8,8 @@ Adds `'Two is less than three'.ok(2 < 3)` syntax to tape. Original functionality
 npm install flip-tape
 ```
 
+![flipped tape machine](flipped-tape.png)
+
 ## Usage
 
 ```js
