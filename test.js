@@ -8,13 +8,20 @@ const arityToMethod = {
   3: ['equal', 'notEqual', 'deepEqual', 'notDeepEqual', 'deepLooseEqual', 'notDeepLooseEqual', 'throws', 'doesNotThrow', 'comment']
 }
 
-const tapeProxy = (opt0, opt1, t) => t(testFunctionProxy)
-const testFunctionProxy = { end: function () {} }
+const tapeMock = (opt0, opt1, t) => t(testObjectMock)
+const testObjectMock = { end: function () {} }
 wrappedMethods.forEach(elem => {
-  testFunctionProxy[elem] = function () { return arguments }
+  testObjectMock[elem] = function () { return arguments }
 })
 
-flip(tapeProxy)(function () {
+flip(tapeMock)(function () {
+  tape('execute callback', t => {
+    t.plan(1)
+    let res = null
+    let cbMock = (t) => { res = t }
+    'msg'.test(cbMock)
+    t.equal(res, testObjectMock, 'test object is passed on to cb')
+  })
   Object.keys(arityToMethod).forEach(arity => {
     arity = +arity
     arityToMethod[arity].forEach(method => {

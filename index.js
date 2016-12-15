@@ -1,23 +1,24 @@
 const methods = require('./methods.json')
 
-module.exports = (tape, executeFunctions) => (opt1, opt2, cb) => {
-  cb = cb || opt2 || opt1 // `opt1` and/or `opt2` could be missing
+module.exports = tape => (arg0, arg1, cb) => {
+  cb = cb || arg1 || arg0 // `arg0` and `arg1` are optional in `tape`
 
-  tape(opt1, opt2, t => {
-    methods.forEach(name => attachMethod(name, executeFunctions, t))
-    cb(t) // hand t over to the actual test
+  tape(arg0, arg1, testObject => {
+    String.prototype.test = testCb => testCb(testObject) // eslint-disable-line
+    methods.forEach(name => attachMethod(name, testObject))
+    cb(testObject)
   })
 }
 
-function attachMethod (name, executeFunctions, t) {
+function attachMethod (name, testObject) {
   String.prototype[name] = function (arg0, arg1) { // eslint-disable-line
     var arity = arguments.length
     if (arity === 2) {
-      return t[name](arg0, arg1, this)
+      return testObject[name](arg0, arg1, this)
     }
     if (arity === 1) {
-      return t[name](arg0, this)
+      return testObject[name](arg0, this)
     }
-    return t[name](this)
+    return testObject[name](this)
   }
 }

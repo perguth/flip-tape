@@ -14,14 +14,19 @@ npm install flip-tape
 var tape = require('tape')
 var flip = require('flip-tape')
 
-tape = flip(tape)
+var test = flip(tape)
 
-tape(t => {
+test(t => {
   t.plan(3)
   t.ok(2 < 3, 'Regular tape syntax works as expected.')
+
   // This is new:
   'Two is less than three'.ok(2 < 3)
   'Five equals five'.equals(5, 5)
+
+  'But there is a callback too'.test(t => {
+    t.notOk(2 > 3)
+  })
 })
 ```
 
@@ -36,6 +41,10 @@ Returns a tape wrapper that attaches all tape-methods that print out to the comm
 #### `'[message]'.[tapeTestMethodName]([actual, fn], [expected])`
 
 Calls the according [tape method](https://github.com/substack/tape#methods) relaying the message string and the optional parameters.
+
+#### `'[message]'.test(cb)`
+
+`cb(t)` gets called with the [test object t](https://github.com/substack/tape#tplann).
 
 ## License
 
