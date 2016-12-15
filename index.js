@@ -13,17 +13,17 @@ module.exports = tape => {
       cb(testObject)
     })
   }
+}
 
-  function attachMethod (name, testObject) {
-    String.prototype[name] = function (arg0, arg1) { // eslint-disable-line
-      var arity = arguments.length
-      if (arity === 2) {
-        return testObject[name](arg0, arg1, this)
-      }
-      if (arity === 1) {
-        return testObject[name](arg0, this)
-      }
-      return testObject[name](this)
+function attachMethod (name, testObject) {
+  String.prototype[name] = function (arg0, arg1) { // eslint-disable-line
+    var arity = arguments.length
+    if (arity === 2) {
+      return testObject[name](arg0, arg1, this)
     }
+    if (arity === 1) {
+      return testObject[name](arg0, this)
+    }
+    return testObject[name](this)
   }
 }
