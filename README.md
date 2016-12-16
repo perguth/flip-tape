@@ -16,14 +16,14 @@ npm install flip-tape
 var test = require('flip-tape')
 
 test('Regular tape assertion group', t => {
-  t.plan(3)
+  t.plan(4)
   t.ok(2 < 3, 'Regular tape syntax works as expected.')
 
   // This is new:
   'Two is less than three'.ok(2 < 3)
   'Five equals five'.equals(5, 5)
 
-  'But there is a callback too'.t(x => {
+  'But there is a callback too'.t(t => {
     t.notOk(2 > 3)
   })
 })
