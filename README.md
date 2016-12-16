@@ -23,7 +23,7 @@ test('Regular tape assertion group', t => {
   'Two is less than three'.ok(2 < 3)
   'Five equals five'.equals(5, 5)
 
-  'But there is a callback too'.test(t => {
+  'But there is a callback too'.t(x => {
     t.notOk(2 > 3)
   })
 })
