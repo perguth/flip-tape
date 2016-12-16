@@ -2,7 +2,7 @@
 
 > Write [`tape`](https://github.com/substack/tape)-tests starting with the message string: `'Two is less than three'.ok(2 < 3)`
 
-Adds `'Two is less than three'.ok(2 < 3)` syntax to tape. Original functionality is kept.
+Adds `'Two is less than three'.ok(2 < 3)` syntax to tape plus two further callback-executing methods. Original functionality is kept.
 
 ```bash
 npm install flip-tape
@@ -13,10 +13,7 @@ npm install flip-tape
 ## Usage
 
 ```js
-var tape = require('tape')
-var flip = require('flip-tape')
-
-var test = flip(tape)
+var test = require('flip-tape')
 
 test('Regular tape assertion group', t => {
   t.plan(3)
@@ -41,21 +38,21 @@ All of [tapes methods](https://github.com/substack/tape#methods) that print out 
 
 ## API
 
-#### `var test = flip(tape)`
+#### `var test = require('flip-tape')`
 
-Returns a tape wrapper that attaches all tape-methods that print out to the command-line to the String prototype.
+Attaches all tape-methods that print out to the command-line plus the `.t()` and `.test()` methods to the String prototype.
 
 #### `'[message]'.test([opt], cb)`
 
 Calls `tape` like this: `tape([message], [opt], cb)`.
 
-#### `'[message]'.[tapeTestMethodName]([actual, fn], [expected])`
-
-Calls the according [tape method](https://github.com/substack/tape#methods) relaying the message string and the optional parameters.
-
 #### `'[message]'.t(cb)`
 
 `cb(t)` gets called with the [test object t](https://github.com/substack/tape#tplann).
+
+#### `'[message]'.[tapeTestMethodName]([actual, fn], [expected])`
+
+Calls the according [tape method](https://github.com/substack/tape#methods) relaying the message string and the optional parameters.
 
 ## License
 

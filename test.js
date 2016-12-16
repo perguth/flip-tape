@@ -1,5 +1,5 @@
 const tape = require('tape')
-const flip = require('.')
+const flipedTape = require('.')
 const wrappedMethods = require('./methods')
 
 var arityToMethod = {
@@ -12,12 +12,14 @@ var tapeMock = (arg0, arg1, cb) => {
   cb(testObjectMock)
   return [arg0, arg1, cb]
 }
+global.flipTape = { tapeMock }
+
 var testObjectMock = { end: function () {} }
 wrappedMethods.forEach(elem => {
   testObjectMock[elem] = function () { return arguments }
 })
 
-flip(tapeMock)(function () {
+flipedTape(x => {
   tape('`String.prototype.test(cb)`', t => {
     t.plan(2)
     let cbArgument = null
