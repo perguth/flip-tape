@@ -8,7 +8,8 @@ if (global.flipTape && global.flipTape.tapeMock) {
 }
 
 String.prototype.test = function (arg1, cb) { // eslint-disable-line
-  return flipTape(this, arg1, cb)
+  var msg = this.toString()
+  return flipTape(msg, arg1, cb)
 }
 
 function flipTape (arg0, arg1, cb) {
@@ -23,12 +24,13 @@ function flipTape (arg0, arg1, cb) {
 function attachMethod (name, testObject) {
   String.prototype[name] = function (arg0, arg1) { // eslint-disable-line
     var arity = arguments.length
+    var msg = this.toString()
     if (arity === 2) {
-      return testObject[name](arg0, arg1, this)
+      return testObject[name](arg0, arg1, msg)
     }
     if (arity === 1) {
-      return testObject[name](arg0, this)
+      return testObject[name](arg0, msg)
     }
-    return testObject[name](this)
+    return testObject[name](msg)
   }
 }
