@@ -1,38 +1,38 @@
 const tape = require('tape')
 const wrappedMethods = require('./methods')
 
-var tapeMock = (arg0, arg1, cb) => {
+let tapeMock = (arg0, arg1, cb) => {
   cb = cb || arg1 || arg0 // `arg0` and `arg1` are optional in `tape`
   let res = cb(testObjectMock)
   return [arg0, arg1, res]
 }
-var testObjectMock = { end: function () {} }
+let testObjectMock = { end: function () {} }
 wrappedMethods.forEach(elem => {
   testObjectMock[elem] = function () { return arguments }
 })
 global.flipTape = { tapeMock }
-const flippedTape = require('.')
+let flippedTape = require('.')
 
-var arityToMethod = {
-  1: ['fail', 'pass', 'skip'],
-  2: ['ok', 'notOk', 'error'],
-  3: ['equal', 'notEqual', 'deepEqual', 'notDeepEqual', 'deepLooseEqual', 'notDeepLooseEqual', 'throws', 'doesNotThrow', 'comment']
-}
+tape('`String.prototype.test(cb)`', t => {
+  t.plan(2)
+  let cbArgument = null
+  let cbMock = t => { cbArgument = t }
+
+  let testOpts = {test: 123}
+  let result = 'msg'.test(testOpts, cbMock)
+  result[0] = result[0].toString()
+  t.deepEqual(result, tapeMock('msg', testOpts, cbMock), '`flip-tape` is attached to `String.prototype` as `test` before the first call to it')
+
+  'msg'.test(cbMock)
+  t.deepEqual(cbArgument, testObjectMock, 'test object is passed on to cb')
+})
 
 flippedTape(x => {
-  tape('`String.prototype.test(cb)`', t => {
-    t.plan(2)
-    let cbArgument = null
-    let cbMock = t => { cbArgument = t }
-
-    let testOpts = {test: 123}
-    let result = 'msg'.test(testOpts, cbMock)
-    result[0] = result[0].toString()
-    t.deepEqual(result, tapeMock('msg', testOpts, cbMock), '`tape` is attached to `String.prototype` as `test`')
-
-    'msg'.test(cbMock)
-    t.deepEqual(cbArgument, testObjectMock, 'test object is passed on to cb')
-  })
+  var arityToMethod = {
+    1: ['fail', 'pass', 'skip'],
+    2: ['ok', 'notOk', 'error'],
+    3: ['equal', 'notEqual', 'deepEqual', 'notDeepEqual', 'deepLooseEqual', 'notDeepLooseEqual', 'throws', 'doesNotThrow', 'comment']
+  }
 
   tape('`String.prototype.t(cb)`', t => {
     t.plan(1)
