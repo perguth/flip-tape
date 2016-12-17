@@ -44,10 +44,14 @@ flippedTape(x => {
 
   Object.keys(arityToMethod).forEach(arity => {
     arity = +arity
-    arityToMethod[arity].forEach(method => {
-      let args = callMethod(method, arity)
+    arityToMethod[arity].forEach(methodName => {
+      let args = callMethod(methodName, arity)
 
-      tape('`String.prototype.' + method + '()`', t => {
+      tape('`String.prototype.' + methodName + '()`', t => {
+        t.plan(arity + 1)
+
+        t.equal(typeof ''.t, 'function', '`.' + methodName + '` function is attached to `String.prototype`')
+
         if (arity === 3) {
           t.equal(args[1].toString(), 'arg1', 'second argument is passed on')
         }
@@ -57,8 +61,6 @@ flippedTape(x => {
         }
 
         t.equal(args[arity - 1].toString(), 'msg', 'message argument is passed on')
-
-        t.end()
       })
     })
   })
