@@ -1,23 +1,23 @@
 const tape = require('tape')
-const flippedTape = require('.')
 const wrappedMethods = require('./methods')
+
+var tapeMock = (arg0, arg1, cb) => {
+  cb = cb || arg1 || arg0 // `arg0` and `arg1` are optional in `tape`
+  cb(testObjectMock)
+  return [arg0, arg1, cb]
+}
+var testObjectMock = { end: function () {} }
+wrappedMethods.forEach(elem => {
+  testObjectMock[elem] = function () { return arguments }
+})
+global.flipTape = { tapeMock }
+const flippedTape = require('.')
 
 var arityToMethod = {
   1: ['fail', 'pass', 'skip'],
   2: ['ok', 'notOk', 'error'],
   3: ['equal', 'notEqual', 'deepEqual', 'notDeepEqual', 'deepLooseEqual', 'notDeepLooseEqual', 'throws', 'doesNotThrow', 'comment']
 }
-var tapeMock = (arg0, arg1, cb) => {
-  cb = cb || arg1 || arg0 // `arg0` and `arg1` are optional in `tape`
-  cb(testObjectMock)
-  return [arg0, arg1, cb]
-}
-global.flipTape = { tapeMock }
-
-var testObjectMock = { end: function () {} }
-wrappedMethods.forEach(elem => {
-  testObjectMock[elem] = function () { return arguments }
-})
 
 flippedTape(x => {
   tape('`String.prototype.test(cb)`', t => {

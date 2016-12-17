@@ -13,8 +13,7 @@ String.prototype.test = function (arg1, cb) { // eslint-disable-line
 
 function flipTape (arg0, arg1, cb) {
   cb = cb || arg1 || arg0
-
-  tape(arg0, arg1, testObject => {
+  return tape(arg0, arg1, testObject => {
     String.prototype.t = customCb => customCb(testObject) // eslint-disable-line
     methods.forEach(name => attachMethod(name, testObject))
     cb(testObject)
