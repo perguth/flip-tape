@@ -1,13 +1,18 @@
 var tape = require('tape')
 const methods = require('./methods.json')
 
-module.exports = (arg0, arg1, cb) => {
-  if (global.flipTape.tapeMock) tape = global.flipTape.tapeMock // for testing
-  cb = cb || arg1 || arg0
+module.exports = flipTape
 
-  String.prototype.test = function (arg1, cb) { // eslint-disable-line
-    return tape(this, arg1, cb)
-  }
+if (global.flipTape && global.flipTape.tapeMock) {
+  tape = global.flipTape.tapeMock // for testing
+}
+
+String.prototype.test = function (arg1, cb) { // eslint-disable-line
+  return flipTape(this, arg1, cb)
+}
+
+function flipTape (arg0, arg1, cb) {
+  cb = cb || arg1 || arg0
 
   tape(arg0, arg1, testObject => {
     String.prototype.t = customCb => customCb(testObject) // eslint-disable-line
