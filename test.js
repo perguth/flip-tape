@@ -3,8 +3,8 @@ const wrappedMethods = require('./methods')
 
 var tapeMock = (arg0, arg1, cb) => {
   cb = cb || arg1 || arg0 // `arg0` and `arg1` are optional in `tape`
-  cb(testObjectMock)
-  return [arg0, arg1, cb]
+  let res = cb(testObjectMock)
+  return [arg0, arg1, res]
 }
 var testObjectMock = { end: function () {} }
 wrappedMethods.forEach(elem => {
@@ -25,7 +25,7 @@ flippedTape(x => {
     let cbArgument = null
     let cbMock = t => { cbArgument = t }
 
-    let testOpts = {}
+    let testOpts = {test: 123}
     let result = 'msg'.test(testOpts, cbMock)
     result[0] = result[0].toString()
     t.deepEqual(result, tapeMock('msg', testOpts, cbMock), '`tape` is attached to `String.prototype` as `test`')
