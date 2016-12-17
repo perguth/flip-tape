@@ -17,7 +17,7 @@ function flipTape (arg0, arg1, cb) {
   return tape(arg0, arg1, testObject => {
     String.prototype.t = customCb => customCb(testObject) // eslint-disable-line
     methods.forEach(name => attachMethod(name, testObject))
-    cb(testObject)
+    return cb(testObject)
   })
 }
 

@@ -15,16 +15,13 @@ let flippedTape = require('.')
 
 tape('`String.prototype.test(cb)`', t => {
   t.plan(2)
-  let cbArgument = null
-  let cbMock = t => { cbArgument = t }
-
+  let cbMock = tapeObject => tapeObject
   let testOpts = {test: 123}
-  let result = 'msg'.test(testOpts, cbMock)
-  result[0] = result[0].toString()
-  t.deepEqual(result, tapeMock('msg', testOpts, cbMock), '`flip-tape` is attached to `String.prototype` as `test` before the first call to it')
 
-  'msg'.test(cbMock)
-  t.deepEqual(cbArgument, testObjectMock, 'test object is passed on to cb')
+  t.equal(typeof ''.test, 'function', '`.test` function is attached to `String.prototype` before the first call to `flip-tape`')
+
+  let result = 'msg'.test(testOpts, cbMock)
+  t.deepEqual(result, tapeMock('msg', testOpts, cbMock), 'arguments are passed on')
 })
 
 flippedTape(x => {
@@ -35,7 +32,9 @@ flippedTape(x => {
   }
 
   tape('`String.prototype.t(cb)`', t => {
-    t.plan(1)
+    t.plan(2)
+
+    t.equal(typeof ''.t, 'function', '`.t` function is attached to `String.prototype`')
 
     let cbArgument = null
     let cbMock = t => { cbArgument = t }
