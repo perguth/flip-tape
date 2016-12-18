@@ -8,7 +8,7 @@ Adds `'Two is less than three'.ok(2 < 3)` syntax to tape plus two further callba
 npm install flip-tape
 ```
 
-![flipped tape machine](flipped-tape.png)
+![flipped tape machine](vendor/flipped-tape.png)
 
 ## Usage
 
