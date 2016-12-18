@@ -42,8 +42,6 @@ All of [tapes methods](https://github.com/substack/tape#methods) that print out 
 
 Attaches all tape-methods that print out to the command-line plus the `.t()` and `.test()` methods to the String prototype.
 
-If you write [standard JS](https://github.com/feross/standard) and only use the flipped syntax you can add `// eslint-disable-line` behind the require statement to suppress the unused variable warning.
-
 #### `'[message]'.test([opt], cb)`
 
 Calls `tape` like this: `tape([message], [opt], cb)`.
