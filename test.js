@@ -1,5 +1,6 @@
 const tape = require('tape')
 const wrappedMethods = require('./methods')
+const exec = require('child_process').exec
 
 let tapeMock = (arg0, arg1, cb) => {
   cb = cb || arg1 || arg0 // `arg0` and `arg1` are optional in `tape`
@@ -12,6 +13,13 @@ wrappedMethods.forEach(elem => {
 })
 global.flipTape = { tapeMock }
 let flippedTape = require('.')
+
+tape('smoke test', t => {
+  t.plan(1)
+  exec('node example.js', {}, (err, _, stderr) => {
+    t.ok(!err && !stderr, 'example.js terminated ok')
+  })
+})
 
 tape('`String.prototype.test(cb)`', t => {
   t.plan(2)
