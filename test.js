@@ -1,5 +1,5 @@
 const tape = require('tape')
-const wrappedMethods = require('./methods')
+const wrappedMethods = require('./lib/methods')
 const exec = require('child_process').exec
 
 let tapeMock = (arg0, arg1, cb) => {

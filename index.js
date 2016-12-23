@@ -1,4 +1,4 @@
-const methods = require('./methods.json')
+const methods = require('./lib/methods.json')
 var test = require('tape')
 
 module.exports = flipTape
