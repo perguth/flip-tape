@@ -32,6 +32,17 @@ tape('`String.prototype.test(cb)`', t => {
   t.deepEqual(result, tapeMock('msg', testOpts, cbMock), 'arguments are passed on')
 })
 
+tape('`String.prototype.only(cb)`', t => {
+  t.plan(2)
+  let cbMock = tapeObject => tapeObject
+  let testOpts = {test: 123}
+
+  t.equal(typeof ''.only, 'function', '`.only` function is attached to `String.prototype` before the first call to `flip-tape`')
+
+  let result = 'msg'.only(testOpts, cbMock)
+  t.deepEqual(result, tapeMock('msg', testOpts, cbMock), 'arguments are passed on')
+})
+
 flippedTape(x => {
   var arityToMethod = {
     1: ['fail', 'pass', 'skip'],

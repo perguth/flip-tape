@@ -4,15 +4,17 @@ var test = require('tape')
 module.exports = flipTape
 
 if (global.flipTape && global.flipTape.tapeMock) {
-  test = global.flipTape.tapeMock // for testing
+  // for testing
+  test = global.flipTape.tapeMock
+  test.only = global.flipTape.tapeMock
 }
 
 String.prototype.test = function (arg1, cb) { // eslint-disable-line
-  return flipTape(this.toString(), arg1, cb, null, null, test)
+  return flipTape(this.toString(), arg1, cb)
 }
 
 String.prototype.only = function (arg1, cb) { // eslint-disable-line
-  return flipTape(this.toString(), arg1, cb, null, null, test.only)
+  return flipTape(this.toString(), arg1, cb)
 }
 
 function flipTape (arg0, arg1, cb, _, __, tape) {
