@@ -2,7 +2,7 @@
 
 > Write [`tape`](https://github.com/substack/tape)-tests starting with the message string: `'Two is less than three'.ok(2 < 3)`
 
-Adds `'Two is less than three'.ok(2 < 3)` syntax to tape plus two further callback-executing methods. Original functionality is kept.
+**`flip-tape`** adds `'Two is less than three'.ok(2 < 3)` syntax to tape plus two further callback-executing methods. Original functionality is kept.
 
 ```bash
 npm install flip-tape
