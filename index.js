@@ -15,7 +15,11 @@ String.prototype.test = function (arg1, cb) { // eslint-disable-line
 function flipTape (arg0, arg1, cb) {
   cb = cb || arg1 || arg0
   return tape(arg0, arg1, testObject => {
-    String.prototype.t = customCb => customCb(testObject) // eslint-disable-line
+    String.prototype.t = function (customCb) { // eslint-disable-line
+      var msg = this.toString()
+      testObject.comment(msg)
+      customCb(testObject)
+    }
     methods.forEach(name => attachMethod(name, testObject))
     return cb(testObject)
   })
