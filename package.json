@@ -1,6 +1,6 @@
 {
   "name": "flip-tape",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Write `tape`-tests starting with the message string: `'Two is less than three'.ok(2 < 3)`",
   "main": "index.js",
   "scripts": {
