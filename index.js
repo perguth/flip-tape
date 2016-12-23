@@ -8,13 +8,11 @@ if (global.flipTape && global.flipTape.tapeMock) {
 }
 
 String.prototype.test = function (arg1, cb) { // eslint-disable-line
-  var msg = this.toString()
-  return flipTape(msg, arg1, cb, null, null, test)
+  return flipTape(this.toString(), arg1, cb, null, null, test)
 }
 
 String.prototype.only = function (arg1, cb) { // eslint-disable-line
-  var msg = this.toString()
-  return flipTape(msg, arg1, cb, null, null, test.only)
+  return flipTape(this.toString(), arg1, cb, null, null, test.only)
 }
 
 function flipTape (arg0, arg1, cb, _, __, tape) {
