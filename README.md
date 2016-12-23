@@ -23,8 +23,8 @@ test('Regular tape assertion group', t => {
   'Two is less than three'.ok(2 < 3)
   'Five equals five'.equals(5, 5)
 
-  'But there is a callback too'.t(t => {
-    t.notOk(2 > 3)
+  'This string becomes a tape comment'.t(t => {
+    t.notOk(2 > 3, 'Three is not greater than two.')
   })
 })
 
@@ -42,15 +42,15 @@ All of [tapes methods](https://github.com/substack/tape#methods) that print out 
 
 Attaches all tape-methods that print out to the command-line plus the `.t()` and `.test()` methods to the String prototype.
 
-#### `'[message]'.test([opt], cb)`
+#### `'[message]'.test([opt], cb)`, `'[message]'.only([opt], cb)`
 
-Calls `tape` like this: `tape([message], [opt], cb)`.
+Calls the according `tape` method: [`.test`](https://github.com/substack/tape#ttestname-opts-cb) or [`.only`](https://github.com/substack/tape#testonlyname-cb).
 
 #### `'[message]'.t(cb)`
 
-`cb(t)` gets called with the [test object t](https://github.com/substack/tape#tplann).
+A [tape comment](https://github.com/substack/tape#tcommentmessage) containing the `message` is added. Then `cb(t)` gets called with the [test object t](https://github.com/substack/tape#tplann).
 
-#### `'[message]'.[tapeTestMethodName]([actual, fn], [expected])`
+#### `'[message]'.tapeTestMethodName([actual, fn], [expected])`
 
 Calls the according [tape method](https://github.com/substack/tape#methods) relaying the message string and the optional parameters.
 
