@@ -19,6 +19,7 @@ tape('smoke test', t => {
   exec('node example.js', {}, (err, _, stderr) => {
     t.ok(!err && !stderr, 'example.js terminated ok')
   })
+  // TODO actually compare TAP outputs
 })
 
 tape('`String.prototype.test(cb)`', t => {
