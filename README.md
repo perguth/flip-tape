@@ -24,13 +24,14 @@ test('Regular tape assertion group', t => {
   'Five equals five'.equals(5, 5)
 
   'This string becomes a tape comment'.t(t => {
-    t.notOk(2 > 3, 'Three is not greater than two.')
+    t.notOk(2 > 3, 'And both syntax types...')
+    '... still work'.noOk(2 > 3)
   })
 })
 
-'You can also start a group of assertions that way'.test(t => {
+'You can also start a group of assertions this way...'.test(t => {
   t.plan(1)
-  t.pass()
+  '... and everything works as expected!'.pass()
 })
 ```
 
