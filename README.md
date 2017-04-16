@@ -45,7 +45,7 @@ Attaches all tape-methods that print out to the command-line plus the `.t()` and
 
 #### `'[message]'.test([opt], cb)`, `'[message]'.only([opt], cb)`
 
-Calls the according `tape` method: [`.test`](https://github.com/substack/tape#ttestname-opts-cb) or [`.only`](https://github.com/substack/tape#testonlyname-cb).
+Calls the respective `tape` method: [`.test`](https://github.com/substack/tape#ttestname-opts-cb) or [`.only`](https://github.com/substack/tape#testonlyname-cb).
 
 #### `'[message]'.t(cb)`
 
