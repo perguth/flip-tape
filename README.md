@@ -25,7 +25,7 @@ test('Regular tape assertion group', t => {
 
   'This string becomes a tape comment'.t(t => {
     t.notOk(2 > 3, 'And both syntax types...')
-    '... still work'.noOk(2 > 3)
+    '... still work'.notOk(2 > 3)
   })
 })
 
