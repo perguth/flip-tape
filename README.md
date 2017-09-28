@@ -2,7 +2,7 @@
 
 >  Write eloquent tests: `'Tautology'.equals(true, true)`
 
-**`flip-tape`** adds `'Two is less than three'.ok(2 < 3)` syntax to tape plus two further callback-executing methods. Original functionality is kept.
+More specific: **`flip-tape`** adds `'Two is less than three'.ok(2 < 3)` syntax to [tape](https://github.com/substack/tape) plus two further callback-executing methods. Original functionality is kept.
 
 ![flipped tape machine](vendor/flipped-tape.png)
 
