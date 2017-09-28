@@ -1,14 +1,14 @@
 # flip-tape
 
-> Write [`tape`](https://github.com/substack/tape)-tests starting with the message string: `'Two is less than three'.ok(2 < 3)`
+>  Write eloquent tests: `'Tautology'.equals(true, true)`
 
 **`flip-tape`** adds `'Two is less than three'.ok(2 < 3)` syntax to tape plus two further callback-executing methods. Original functionality is kept.
+
+![flipped tape machine](vendor/flipped-tape.png)
 
 ```bash
 npm install flip-tape
 ```
-
-![flipped tape machine](vendor/flipped-tape.png)
 
 ## Usage
 
