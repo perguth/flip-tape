@@ -1,7 +1,7 @@
 const methods = require('./lib/methods.json')
 var test = require('tape')
 
-module.exports = flipTape
+module.exports = Object.assign(flipTape, test)
 
 if (global.flipTape && global.flipTape.tapeMock) {
   // for testing
